@@ -35,7 +35,7 @@
         android:layout_below="@+id/Geschwindigkeit"
         android:layout_height="wrap_content" />
 
-    <TextView android:id="@+id/Zeit" android:text="ZeitbiszurAmpel"
+    <TextView android:id="@+id/Zeit" android:text="ZeitbiszurAmpel: "
         android:layout_width="wrap_content"
         android:layout_below="@+id/naechsteAmpel"
         android:layout_height="wrap_content" />
