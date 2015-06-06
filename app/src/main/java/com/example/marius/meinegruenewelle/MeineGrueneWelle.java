@@ -45,6 +45,11 @@ public class MeineGrueneWelle extends ActionBarActivity {
             tv3.setText("Abstand:          "+String.valueOf(Abstand));
             TextView tv4 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Geschwindigkeit);
             tv4.setText("Geschwindigkeit:   "+String.valueOf(location.getSpeed()+" Meter pro Sekunde"));
+            TextView tv5 = (TextView) MeineGrueneWelle.this.findViewById(R.id.naechsteAmpel);
+            Location ampel=naechsteAmpel(location);
+            float minAmpelentfernung= ampel.distanceTo(location) ;
+            float Zeit=location.getSpeed()/minAmpelentfernung;
+            TextView tv6 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Zeit);
 
 
         }
@@ -103,11 +108,16 @@ public class MeineGrueneWelle extends ActionBarActivity {
     public Location naechsteAmpel(Location standort) {
         Location ampel;
         ampel=ampeln.get(0);
+        float minAmpelentfernung =ampeln.get(0).distanceTo(standort) ;
         for (int i=0; i<ampeln.size();i++){
-           // if (ampeln.get(i).distanceTo(standort)) {
+            float Ampelentfernung=ampeln.get(i).distanceTo(standort);
+            if (Ampelentfernung<minAmpelentfernung) {
+                ampel=ampeln.get(i);
+                minAmpelentfernung=Ampelentfernung;
                 
-        //    }
+           }
         }
-        return null;
+        return ampel;
+
     }
 }
