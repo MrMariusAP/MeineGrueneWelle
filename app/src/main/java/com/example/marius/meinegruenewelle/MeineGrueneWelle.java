@@ -43,6 +43,8 @@ public class MeineGrueneWelle extends ActionBarActivity {
             float Abstand=Startpunkt.distanceTo(location);
             TextView tv3 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Entfernung);
             tv3.setText("Abstand:          "+String.valueOf(Abstand));
+            TextView tv4 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Geschwindigkeit);
+            tv4.setText("Geschwindigkeit:   "+String.valueOf(location.getSpeed()+" Meter pro Sekunde"));
 
 
         }
@@ -59,8 +61,8 @@ public class MeineGrueneWelle extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meine_gruene_welle);
         LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        LetzterStandort= locationManager. getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 400, 1, locationListener);
+        LetzterStandort= locationManager. getLastKnownLocation(LocationManager.GPS_PROVIDER);
         //Toast.makeText(this,String.valueOf(calculateDistance(51.029f, 13.738f, 51.0284f, 13.745f)),Toast.LENGTH_LONG).show();
         Startpunkt=LetzterStandort;
         Button Startpunkt=(Button)findViewById(R.id.Startpunkt);
@@ -102,9 +104,10 @@ public class MeineGrueneWelle extends ActionBarActivity {
         Location ampel;
         ampel=ampeln.get(0);
         for (int i=0; i<ampeln.size();i++){
-            if (ampeln.get(i).distanceTo(standort)) {
+           // if (ampeln.get(i).distanceTo(standort)) {
                 
-            }
+        //    }
         }
+        return null;
     }
 }
