@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MeineGrueneWelle extends ActionBarActivity {
     private static final int earthRadius = 6371;
@@ -92,5 +95,16 @@ public class MeineGrueneWelle extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+  public List <Location> ampeln = new ArrayList<Location>();
+
+    public Location naechsteAmpel(Location standort) {
+        Location ampel;
+        ampel=ampeln.get(0);
+        for (int i=0; i<ampeln.size();i++){
+            if (ampeln.get(i).distanceTo(standort)) {
+                
+            }
+        }
     }
 }
