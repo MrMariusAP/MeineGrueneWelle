@@ -15,5 +15,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView android:id="@+id/Homepoint"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/Breitengrad"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/Entfernung"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/Homepoint"
+        android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/Startpunkt"
+        android:text="Startpunkt festlegen"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/Geschwindigkeit"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/Geschwindigkeit" android:text="Geschwindigkeit:-unbekannt"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/Entfernung"
+        android:layout_height="wrap_content" />
+
+
 
 </RelativeLayout>

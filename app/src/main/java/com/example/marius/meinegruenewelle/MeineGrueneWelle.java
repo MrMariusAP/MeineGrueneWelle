@@ -7,10 +7,27 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MeineGrueneWelle extends ActionBarActivity {
+    private static final int earthRadius = 6371;
+    private Location LetzterStandort;
+    private Location Startpunkt;
+    public static float calculateDistance(float lat1, float lon1, float lat2, float lon2)
+    {
+    float dLat = (float) Math.toRadians(lat2 - lat1);
+    float dLon = (float) Math.toRadians(lon2 - lon1);
+    float a =
+            (float) (Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1))
+                    * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2));
+    float c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+    float d = earthRadius * c;
+    return d;
+}
     LocationListener locationListener = new LocationListener() {
 
         // Wird Aufgerufen, wenn eine neue Position durch den LocationProvider bestimmt wurde
@@ -18,8 +35,11 @@ public class MeineGrueneWelle extends ActionBarActivity {
 
             TextView tv1 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Laengengrad);
             TextView tv2 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Breitengrad);
-            tv1.setText(String.valueOf(location.getLatitude()));
-            tv2.setText(String.valueOf(location.getLongitude()));
+            tv1.setText("Breitengrad:    "+String.valueOf(location.getLatitude()));
+            tv2.setText("Laengengrad: "+String.valueOf(location.getLongitude()));
+            float Abstand=Startpunkt.distanceTo(location);
+            TextView tv3 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Entfernung);
+            tv3.setText("Abstand:          "+String.valueOf(Abstand));
 
 
         }
@@ -37,6 +57,19 @@ public class MeineGrueneWelle extends ActionBarActivity {
         setContentView(R.layout.activity_meine_gruene_welle);
         LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        LetzterStandort= locationManager. getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        //Toast.makeText(this,String.valueOf(calculateDistance(51.029f, 13.738f, 51.0284f, 13.745f)),Toast.LENGTH_LONG).show();
+        Startpunkt=LetzterStandort;
+        Button Startpunkt=(Button)findViewById(R.id.Startpunkt);
+        Startpunkt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MeineGrueneWelle.this.Startpunkt=LetzterStandort;
+                TextView tv3 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Entfernung);
+                tv3.setText("Abstand:          0");
+
+            }
+        });
     }
 
     @Override
