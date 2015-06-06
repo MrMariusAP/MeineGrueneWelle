@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MeineGrueneWelle extends ActionBarActivity {
     LocationListener locationListener = new LocationListener() {
@@ -59,5 +62,16 @@ public class MeineGrueneWelle extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+  public List <Location> ampeln = new ArrayList<Location>();
+
+    public Location naechsteAmpel(Location standort) {
+        Location ampel;
+        ampel=ampeln.get(0);
+        for (int i=0; i<ampeln.size();i++){
+            if (ampeln.get(i).distanceTo(standort)) {
+                
+            }
+        }
     }
 }
