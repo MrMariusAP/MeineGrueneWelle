@@ -46,8 +46,9 @@ public class MeineGrueneWelle extends ActionBarActivity {
             TextView tv4 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Geschwindigkeit);
             tv4.setText("Geschwindigkeit:   "+String.valueOf(location.getSpeed()+" Meter pro Sekunde"));
             TextView tv5 = (TextView) MeineGrueneWelle.this.findViewById(R.id.naechsteAmpel);
-            MyEntry<Float,Float> ampel[]=new MyEntry<Float,Float>[1];
-            float minAmpelentfernung=naechsteAmpel(location);
+            MyEntry<Float,Float> ampel[]=new MyEntry [1];
+            float minAmpelentfernung=naechsteAmpel(location,ampel);
+            tv5.setText("entfernung:"+minAmpelentfernung);
             float Zeit;
             if (minAmpelentfernung == 0) {
                 Zeit=0;
