@@ -46,6 +46,7 @@ public class MeineGrueneWelle extends ActionBarActivity {
             TextView tv4 = (TextView) MeineGrueneWelle.this.findViewById(R.id.Geschwindigkeit);
             tv4.setText("Geschwindigkeit:   "+String.valueOf(location.getSpeed()+" Meter pro Sekunde"));
             TextView tv5 = (TextView) MeineGrueneWelle.this.findViewById(R.id.naechsteAmpel);
+            MyEntry<Float,Float> ampel[]=new MyEntry<Float,Float>[1];
             float minAmpelentfernung=naechsteAmpel(location);
             float Zeit;
             if (minAmpelentfernung == 0) {
@@ -115,7 +116,7 @@ public class MeineGrueneWelle extends ActionBarActivity {
     }
   public List <MyEntry<Float,Float>> ampeln ;
 
-    public float naechsteAmpel(Location standort) {
+    public float naechsteAmpel(Location standort,MyEntry<Float,Float> minAmpel[]) {
         MyEntry<Float,Float> ampel;
         ampel=ampeln.get(0);
         float[] minAmpelentfernung = new float[1];
@@ -130,6 +131,7 @@ public class MeineGrueneWelle extends ActionBarActivity {
            }
         }
         Toast.makeText(this,ampel.getKey()+":"+ampel.getValue(),Toast.LENGTH_LONG).show();
+        minAmpel[0]=ampel;
         return minAmpelentfernung[0];
     }
     public void ladeAmpeln(){
